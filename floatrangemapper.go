@@ -5,5 +5,9 @@ type FloatRangeMapper struct {
 }
 
 func (fmr FloatRangeMapper) Map(value float64) float64 {
-	return (value - fmr.Source.From) * fmr.Target.Range() / fmr.Source.Range() + fmr.Target.From
+	return mapUsingRanges(fmr.Source, fmr.Target, value)
+}
+
+func mapUsingRanges(source, target FloatRange, value float64) float64 {
+	return (value - source.From) * target.Range() / source.Range() + target.From
 }

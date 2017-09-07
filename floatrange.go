@@ -24,3 +24,12 @@ func (fr FloatRange) Cap(value float64) float64 {
 	}
 	return value
 }
+
+func (fr FloatRange) Normalise(value float64) float64 {
+	return mapUsingRanges(fr, FloatRange{From:0,To:1}, value)
+}
+
+func (fr FloatRange) ScaleFromNormalised(value float64) float64 {
+	return mapUsingRanges(FloatRange{From:0,To:1}, fr, value)
+}
+
